@@ -15,14 +15,14 @@ public class ChatServer {
 //            SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             while (true) {
                 try {
-                    // 收
+                    // Receive
                     byte[] receiveData = new byte[1024];
                     DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                     severSocket.receive(receivePacket);
-                    // 把收到数据转化为发送数据
+                    // Convert the received message to sendData
                     String sendDataInString = new String(receivePacket.getData(), 0, receivePacket.getLength()).toLowerCase();
                     sendData = sendDataInString.getBytes();
-                    // 发
+                    // Send
                     InetAddress clientAddr = receivePacket.getAddress();
                     int port = receivePacket.getPort();
                     DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, clientAddr, port);

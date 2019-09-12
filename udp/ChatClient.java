@@ -8,18 +8,18 @@ import java.net.*;
 public class ChatClient implements Runnable{
     @Override
     public  void run() {
-        // 开启inputStreamReader准备读取用户输入
+        // initialize inputStreamReader, ready for reading the input from user
         BufferedReader userInput = new BufferedReader(
                                 new InputStreamReader(System.in));
         try (DatagramSocket clientSocket = new DatagramSocket();) {
             InetAddress currentAddress = InetAddress.getLocalHost();
             byte[] sendData;
-            System.out.println("输入all或者发送对象；输入想发送的语句:");
-            // 循环发送接收数据包
+            System.out.println("Enter all or ip:port；Enter the message content:");
+            // Loop for sending and receiving scokets
             while (true) {
                 try {
                     byte[] receiveData = new byte[1024];
-                    // 读取输入、放入发送packet、发送
+                    // Read input; put them into the packet; send
                     String target = userInput.readLine();
                     String sentence = userInput.readLine();
                     if (sentence.equals("q")) break;
@@ -27,7 +27,7 @@ public class ChatClient implements Runnable{
                     DatagramPacket sendPacket =
                             new DatagramPacket(sendData, sendData.length, currentAddress, 9876);
                     clientSocket.send(sendPacket);
-                    // 创建接收packet、接收
+                    // create packet for receiving mesaage; receive
                     DatagramPacket receivePacket =
                             new DatagramPacket(receiveData, receiveData.length);
                     clientSocket.receive(receivePacket);

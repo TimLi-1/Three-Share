@@ -11,7 +11,7 @@ import java.util.List;
 public class ChatRoomServer {
     public static void main (String[] args) {
         try (DatagramSocket socket = new DatagramSocket(9876)) {
-            // 定义接收的字节数组
+            // Define the bytes for receiving
             byte[] receive = new byte[1024];
             System.out.println("Sever started.");
             List<AddrAndPort> registeredClients = new LinkedList<>();
@@ -19,29 +19,28 @@ public class ChatRoomServer {
                 try {
                     DatagramPacket packet = new DatagramPacket(receive, receive.length);
                     socket.receive(packet);
-                    // 获得发送端的IP、以及data
+                    // get the sender's ip and data
                     InetAddress senderAddr = packet.getAddress();
                     int senderPort = packet.getPort();
                     String receivedData = new String(packet.getData(), 0, packet.getLength());
-                    // 关闭判断
+                    // whether the connnection end
                     if (receivedData.equals("q")) {
                         System.out.println("Sever端关闭");
                         break;
                     }
-                    // 判断消息类型，private or public
+                    // justify the mssage type is private or public
                     String[] meesageGroup = receivedData.split(" ");
                     if (meesageGroup[0].equals("all")) {
-                        // 如果发送端不在registeredList里，添加
-                        // 发送给所有clients，接收的数据以及发送端的ip信息
+                        // if sender not registered in registeredList, add it;
+                        // send to all clients, data and sender's ip
                         boolean notRegisteredYet = true;
                         for (AddrAndPort client: registeredClients) {
                             if (client.getAddr().equals(senderAddr) && client.getPort() == senderPort) {
                                 notRegisteredYet = false;
                             } else {
-                                //创建要发送的数据包，然后用套接字发送
+                                // create the packet; send using socket
                                 byte[] dataToSend = (senderAddr.toString()+ ": " + senderPort + "\r\n" + receivedData).getBytes();
                                 DatagramPacket sendPacket = new DatagramPacket(dataToSend, dataToSend.length, client.getAddr(), client.getPort());
-                                //用套接字发送数据包
                                 socket.send(sendPacket);
                             }
                         }
@@ -49,7 +48,7 @@ public class ChatRoomServer {
                             registeredClients.add(new AddrAndPort(senderAddr, senderPort));
                         }
                     } else {
-                        // 从MessageGroup中获得发送方所要求的接收方address port，并且发送
+                        // Get the receiver's address and port from MessageGroup; Send
                         String[] addrAndPort = meesageGroup[0].split(":");
                         InetAddress receiverAddr = InetAddress.getByName(addrAndPort[0]);
                         int receiverPort = Integer.parseInt(addrAndPort[1]);

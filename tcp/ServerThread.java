@@ -34,7 +34,7 @@ public class ServerThread extends Thread{
                     logging.info("Get meesage " + buf + " from " + socket.getInetAddress());
                     String[] words = buf.split(":");
                     if (words[0].equals("all")) {
-                        // 群组群聊新消息
+                        // group message
                         String wordsToSend = words[1];
                         // iterate every client in the serverThreadList to use the socket send message
                         for (ServerThread thread: serverThreadList) {
@@ -42,7 +42,7 @@ public class ServerThread extends Thread{
                             thread.getWriter().flush();
                         }
                     } else {
-                        // 一对一的私聊消息
+                        // private message
                         String wordsToSend = words[2];
                         AddrAndPort ipToFind = new AddrAndPort(InetAddress.getByName(words[0]), Integer.parseInt(words[1]));
                         // Sending the message
