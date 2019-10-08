@@ -4,8 +4,16 @@ html, body, svg {
 	font-family: Liberation sans, sans-serif;
 }
 
-#canvas {
+/* #canvas {
 	transform-origin: 0 0;
+} */
+
+#codeShare {
+	height: 100vh;
+}
+
+.col {
+	height: 100vh;
 }
 
 #loadingMessage {
