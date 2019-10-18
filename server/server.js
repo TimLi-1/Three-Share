@@ -19,6 +19,7 @@ var io = sockets.start(app);
  */
 var WEBROOT = path.join(__dirname, "../client-data");
 
+
 /**
  * Port on which the application will listen
  * @const
