@@ -3,6 +3,24 @@ html, body, svg {
 	margin:0;
 	font-family: Liberation sans, sans-serif;
 }
+/* 
+svg {
+	width: 500px;
+	height: auto;
+	border-color: blue;
+	background-color: yellow;
+} */
+
+/* .row {
+	display: flex;
+} */
+  
+/* Create two equal columns that sits next to each other 
+.column {
+	flex: 50%;
+	padding: 10px;
+	height: 300px; 
+} */
 
 /* #canvas {
 	transform-origin: 0 0;
