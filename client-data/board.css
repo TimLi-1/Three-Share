@@ -26,10 +26,6 @@ html, body, svg {
 	height: 100vh;
 }
 
-textarea {
-	background-color: grey;
-}
-
 #loadingMessage {
 	font-size: 1.5em;
 	background: #3339 linear-gradient( #C4DFFF, #8FA2BC);
