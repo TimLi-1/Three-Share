@@ -15,7 +15,7 @@ Languages: JavaScript / HTML / CSS
 **How to run the code on command line/terminal:**
 
 1. Download ZIP
-2. On your command line/terminal, go to the file location. I’m using mac, so for me it should be ‘cd <filename>’
+2. On your command line/terminal, go to the file location. I’m using mac, so for me it should be ‘cd filename’
 3. Type ‘npm install’ on your command/terminal
 4. Type ‘npm start’ to start the server
 5. It says “server started {“port”:8000}, so open your browser and enter “http://localhost:8080”, you will see our main website.
