@@ -23,7 +23,7 @@ Languages: JavaScript / HTML / CSS
  
 **Features:**
 
-1. Online Whitebaord
+1. Online Whitebaord:
 Pencil, Draw, Create Shape, Zoom In, Eraser, Color
 
 2. Text Editor
