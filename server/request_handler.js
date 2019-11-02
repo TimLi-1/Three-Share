@@ -61,18 +61,15 @@ function handler(request, response) {
 			// "boards" refers to the root directory
 			if (parts.length === 1 && parsedUrl.query.board) {
 				// '/boards?board=...' This allows html forms to point to boards
-
 				logRequest(request);
 				redirect(request, response, parsedUrl, parts);
 			}
 			else if (parts.length === 2 && request.url.indexOf('.') === -1) {
 				// If there is no dot and no directory, parts[1] is the board name
-				
 				logRequest(request);
 				serveWorkspace(request, response, parsedUrl, parts);
 			}
-			else { 
-				// Else, it's a resource
+			else {
 				logRequest(request);
 				serveError(request, response);
 			}
@@ -91,15 +88,6 @@ function handler(request, response) {
 
 
 // helper functions
-function serveError(request, response) {
-	fileserver.serve(request, response, function (err, res) {
-		if (err) {
-			console.warn("Error serving '" + request.url + "' : " + err.status + " " + err.message);
-			fileserver.serveFile('error.html', err.status, {}, request, response);
-		}
-	});
-}
-
 function logRequest(request) {
 	log('connection', {
 		ip: request.connection.remoteAddress,
@@ -144,6 +132,15 @@ function serveWorkspace(request, response, url, parts) {
 	};
 	response.writeHead(200, headers);
 	response.end(body);
+}
+
+function serveError(request, response) {
+	fileserver.serve(request, response, function (err, res) {
+		if (err) {
+			console.warn("Error serving '" + request.url + "' : " + err.status + " " + err.message);
+			fileserver.serveFile('error.html', err.status, {}, request, response);
+		}
+	});
 }
 
 module.exports = handler;
