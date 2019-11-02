@@ -8,19 +8,26 @@
 [Peer Evaluation Document](https://docs.google.com/document/d/1D_z4sYiMz3xodhVX8bbK07O_-YSRFxAe030zjJ8njQo/edit?usp=sharing)\
 [Status Report](https://docs.google.com/document/d/1Gq-S-pvJvnfisQ2nGSs6HPflyAuvZhsY8yloKFDakWo/edit?usp=sharing)
 
-**GuideLine:**
-Environment: Java8\
-\
-Description:\
-This simple chat room support both group message and private massage. All the messages first go through the sever and sever will dispatch them. 
+**Languages:**
 
-How to Run (in the case of tcp):
-1. Build 
-2. Run Server.java, which is a registration and dispatch center: 
-3. Run ClientThread.java as clientA
-4. Run ClientB.java as clientB
+Languages: JavaScript / HTML / CSS
 
-**Tech stack:**\
-The communication between server and client used __web socket__;\
-**Multithread** is used: When the server monitor a request, server will assign this task to a new subthread while rhe main thread remain listening. 
+**How to run the code on command line/terminal:**
+
+1. Download ZIP
+2. On your command line/terminal, go to the file location. I’m using mac, so for me it should be ‘cd filename’
+3. Type ‘npm install’ on your command/terminal
+4. Type ‘npm start’ to start the server
+5. It says “server started {“port”:8000}, so open your browser and enter “http://localhost:8080”, you will see our main website.
+6. Go ahead create a new whiteboard and try our new features
  
+**Features:**
+
+1. Online Whitebaord:
+Pencil, Draw, Create Shape, Zoom In, Eraser, Color
+
+2. Text Editor
+
+3. Todo: Live chat room (hopefully)
+
+
