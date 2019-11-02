@@ -41,6 +41,9 @@ Tools.boardName = (function () {
 //Get the board as soon as the page is loaded
 Tools.socket.emit("getboard", Tools.boardName);
 
+// the holder of the TextArea --Lydia
+const textAreaHolder = document.getElementById("textArea");
+
 Tools.HTML = {
 	template: new Minitpl("#tools > .tool"),
 	addTool: function (toolName, toolIcon, toolShortcut) {
@@ -79,6 +82,16 @@ Tools.HTML = {
 		document.head.appendChild(link);
 	}
 };
+
+// implemented for textArea -Lydia
+function myFunction() {
+	// var text = textAreaHolder.innerHTML;
+	var text = textAreaHolder.value;
+	var boardTitle = Tools.boardName;
+
+	Tools.socket.emit("textArea", {boardTitle, text});
+	var a= 1;
+}
 
 Tools.list = {}; // An array of all known tools. {"toolName" : {toolObject}}
 
@@ -217,6 +230,15 @@ function handleMessage(message) {
 	if (message._children) return batchCall(handleMessage, message._children);
 	else return Promise.resolve();
 }
+
+// Receive text instructions from the server (saved files) -Lydia() - textArea
+Tools.socket.on("textArea", function(msg) {
+	textAreaHolder.value = msg.text;
+	// document.getElementById("textArea").value = msg.text;
+	// var loadingEl = document.getElementById("loadingMessage");
+	// loadingEl.classList.add("hidden");
+	var a = 1;
+});
 
 //Receive draw instructions from the server
 Tools.socket.on("broadcast", function (msg) {

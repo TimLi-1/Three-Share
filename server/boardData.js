@@ -54,6 +54,7 @@ var MAX_BOARD_SIZE = 65536; // Maximum value for any x or y on the board
 var BoardData = function (name) {
 	this.name = name;
 	this.board = {};
+	this.text = "";
 	this.file = path.join(HISTORY_DIR, "board-" + encodeURIComponent(name) + ".json");
 	this.lastSaveDate = Date.now();
 	this.users = new Set();
@@ -68,6 +69,12 @@ BoardData.prototype.set = function (id, data) {
 	this.delaySave();
 };
 
+/** Adds text to the textArea of the board -Lydia */
+BoardData.prototype.setText = function (text) {
+	this.text = text;
+}
+
+
 /** Adds a child to an element that is already in the board
  * @param {string} id - Identifier of the parent element.
  * @param {object} child - Object containing the the values to update.
@@ -79,7 +86,6 @@ BoardData.prototype.addChild = function (parentId, child) {
 	if (typeof obj !== "object") return false;
 	if (Array.isArray(obj._children)) obj._children.push(child);
 	else obj._children = [child];
-
 	this.validate(obj);
 	this.delaySave();
 	return true;
@@ -164,7 +170,9 @@ BoardData.prototype.save = function (file) {
 	this.clean();
 	if (!file) file = this.file;
 	var tmp_file = backupFileName(file);
-	var board_txt = JSON.stringify(this.board);
+	// var storedDataArray = {"board":JSON.stringify(this.board), "text":this.text};
+	// var board_txt = JSON.stringify(storedDataArray);
+	var board_txt = JSON.stringify(this.board) + "\n" + this.text;
 	var that = this;
 	function afterSave(err) {
 		if (err) {
@@ -237,7 +245,15 @@ BoardData.load = function loadBoard(name) {
 		fs.readFile(boardData.file, function (err, data) {
 			try {
 				if (err) throw err;
-				boardData.board = JSON.parse(data);
+				data = data.toString();
+				indexSlashN = data.indexOf("\n");
+				var whiteboardData = data.slice(0, indexSlashN);
+				var textData = data.slice(indexSlashN + 1, 0);
+				// console.log(whiteboardData);
+				// console.log(textData);
+				var a1 = JSON.parse(whiteboardData);
+				boardData.board = JSON.parse(whiteboardData);
+				boardData.text = textData;
 				for (id in boardData.board) boardData.validate(boardData.board[id]);
 				log('disk load', { 'board': boardData.name });
 			} catch (e) {

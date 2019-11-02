@@ -58,6 +58,24 @@ function socketConnection(socket) {
 		});
 	}));
 
+	// Implemented for the TextArea -Lydia
+	socket.on("textArea", noFail(function onBroadcastText(message) {
+		var boardName = message.boardTitle;
+		var data = {"type": "textArea", "text":message.text};
+		var tmp1 = "a";
+
+		if (!data) {
+			console.warn("Received invalid message: %s.", JSON.stringify(message));
+			return;
+		}
+
+		//Send data to all other users connected on the same board
+		socket.broadcast.to(boardName).emit('textArea', data);
+
+		// Save the message in the board
+		saveHistory(boardName, data);
+	}));
+
 	socket.on("joinboard", noFail(joinBoard));
 
 	var lastEmitSecond = Date.now() / MAX_EMIT_COUNT_PERIOD | 0;
@@ -127,6 +145,10 @@ function saveHistory(boardName, message) {
 				break;
 			case "child":
 				board.addChild(message.parent, message);
+				break;
+			case "textArea":
+				// this is about saving the textArea into the local data files(check .setText) -lydia -TODO
+				board.setText(message.text);
 				break;
 			default: //Add data
 				if (!id) throw new Error("Invalid message: ", message);
