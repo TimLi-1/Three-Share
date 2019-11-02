@@ -1,3 +1,14 @@
+/*
+
+	sockets.js
+
+	@author: 
+	@date:
+
+	refactored by cheng jiang in november 2019
+
+*/
+
 var iolib = require('socket.io')
 	, log = require("./log.js").log
 	, BoardData = require("./boardData.js").BoardData;
