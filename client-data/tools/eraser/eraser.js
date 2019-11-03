@@ -24,12 +24,14 @@
  * @licend
  */
 
-(function eraser() { //Code isolation
+//Code isolation
+(function eraser() { 
 
 	var erasing = false;
 
+	
 	function startErasing(x, y, evt) {
-		//Prevent the press from being interpreted by the browser
+		// Prevent the press from being interpreted by the browser
 		evt.preventDefault();
 		erasing = true;
 		erase(x, y, evt);
@@ -74,8 +76,8 @@
 	}
 
 	var svg = Tools.svg;
-
-	Tools.add({ //The new tool
+	//The new tool
+	Tools.add({ 
 		"name": "Eraser",
 		"icon": "❌",
 		"shortcut": "e",
@@ -88,4 +90,5 @@
 		"mouseCursor": "crosshair",
 	});
 
-})(); //End of code isolation
+})(); 
+//End of code isolation
