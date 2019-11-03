@@ -24,7 +24,8 @@
  * @licend
  */
 
-(function () { //Code isolation
+//Code isolation
+(function () { 
 
 	var orig = { x: 0, y: 0 };
 	var pressed = false;
@@ -36,7 +37,8 @@
 		}
 	}
 	function move(x, y, evt, isTouchEvent) {
-		if (pressed && !isTouchEvent) { //Let the browser handle touch to scroll
+		//Let the browser handle touch to scroll
+		if (pressed && !isTouchEvent) { 
 			window.scrollTo(orig.x - evt.clientX, orig.y - evt.clientY);
 		}
 	}
@@ -58,4 +60,5 @@
 
 	//The hand tool is selected by default
 	Tools.change("Hand");
-})(); //End of code isolation
+})(); 
+//End of code isolation
