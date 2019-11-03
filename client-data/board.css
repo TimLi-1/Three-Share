@@ -10,8 +10,9 @@ html, body, svg {
   
 /* Create two equal columns that sits next to each other */
 .column {
-	width: 1000px;
-	height: 1500px;
+	width: 50%;
+	height: 100%;
+	position: fixed;
 }
 
 /* #canvas {
