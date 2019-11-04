@@ -13,15 +13,17 @@
 <body>
 	<div class="row">
 		<div id="whiteboard">
-			<div id="tool-menu">
-				<ul>
+			<div class="tool-menu">
+				<button id="pencil-tool" onclick="selectPencil()">Pencil</button>
+				<input class="jscolor" id="color-picker" value="#000000" onchange="changeColor(this.jscolor)">
+<!-- 				<ul>
 					<li>
 						<input class="jscolor" id="color-picker" value="#000000" onchange="changeColor(this.jscolor)">
 					</li>
 					<li>
 						<input type="range" id="weight-slider" min=1 max=20 step="any">
 					</li>
-				</ul>
+				</ul> -->
 			</div>
 
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>

@@ -16,9 +16,22 @@ body {
 	margin: 0;
 }
 
+#pencil-tool {
+	text-align: center;
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	width: 60px;
+	height: 60px;
+	border-radius: 35px;
+	border: 2px solid white;
+
+}
+
 #color-picker {
 	text-align: center;
 	position: fixed;
+	top: 80px;
 	left: 10px;
 	width: 60px;
 	height: 60px;

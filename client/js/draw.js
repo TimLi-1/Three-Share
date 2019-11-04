@@ -13,6 +13,30 @@ var current = {
 	weight: 1
 };
 
+var mode = {
+	pencil_draw: 0
+}
+
+var pencil = document.getElementById("pencil-tool");
+pencil.addEventListener("click", selectPencil);
+
+function selectPencil() {
+	mode.pencil_draw = 1;
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var weightSlider = document.getElementById("weight-slider");
 weightSlider.addEventListener("change", changeWeight, false);
 
@@ -67,9 +91,17 @@ function mousePressed() {
 function mouseDragged(event) {
 	if (mouseButton === LEFT) {
 		if (event.target.tagName === "CANVAS") {
-			drawLine(current.x, current.y, mouseX, mouseY);
-			current.x = mouseX;
-			current.y = mouseY;
+			if (mode.pencil_draw === 1) {
+				drawLine(current.x, current.y, mouseX, mouseY);
+				current.x = mouseX;
+				current.y = mouseY;
+			}
 		}
 	}
 }
+
+// function mouseReleased() {
+// 	if (mode.pencil_draw === 1) {
+// 		mode.pencil_draw = 0;
+// 	}
+// }
