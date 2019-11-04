@@ -3,20 +3,34 @@
 <html>
 <head>
 	<title>Three Share</title>
+	<link rel="stylesheet" href="workspace.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+	<meta name="viewpoint" content="width=device-width, initial-scale=1.0"/>
+	<script src="js/jscolor.js"></script>
 </head>
 
 <body>
-	<div>
+	<div class="row">
+		<div id="whiteboard">
+			<div id="tool-menu">
+				<ul>
+					<li>
+						<input class="jscolor" id="color-picker" value="#000000" onchange="changeColor(this.jscolor)">
+					</li>
+					<li>
+						<input type="range" id="weight-slider" min=1 max=20 step="any">
+					</li>
+				</ul>
+			</div>
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+			<script src="js/draw.js"></script>
+		</div>
 	</div>
 
-	<div>
-		<div>
-		</div>
-
-		<div>
-		</div>
-	</div>
-
+<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
 </body>
 
 </html>
