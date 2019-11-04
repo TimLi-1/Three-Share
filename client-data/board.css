@@ -7,15 +7,17 @@ html, body, svg {
 .row {
 	display: flex;
 }
-
+  
 /* Create two equal columns that sits next to each other */
 .column {
-	width: 50%;
-	height: 100%;
-	position: fixed;
+	width: 1000px;
+	height: 1500px;
 }
 
-/* The board for the code sharing */
+/* #canvas {
+	transform-origin: 0 0;
+} */
+
 #codeShare {
 	height: 100vh;
 }
@@ -24,7 +26,6 @@ html, body, svg {
 	height: 100vh;
 }
 
-/* Display loading message on center of the board*/
 #loadingMessage {
 	font-size: 1.5em;
 	background: #3339 linear-gradient( #C4DFFF, #8FA2BC);
@@ -76,8 +77,7 @@ html, body, svg {
 	transition-duration:1s;
 }
 
-/*Menu title ("Menu")*/
-#menu h2{ 
+#menu h2{ /*Menu title ("Menu")*/
 	display: none;
 	font-size:4vh;
 	text-align: center;
