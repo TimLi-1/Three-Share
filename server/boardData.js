@@ -140,7 +140,7 @@ BoardData.prototype.getAll = function (id) {
 };
 
 /**
- * 
+ * add users
  */
 BoardData.prototype.addUser = function addUser(userId) {
 
