@@ -7,12 +7,11 @@ html, body, svg {
 .row {
 	display: flex;
 }
-  
+
 /* Create two equal columns that sits next to each other */
 .column {
-	width: 50%;
-	height: 100%;
-	position: fixed;
+	width: 1000px;
+	height: 1500px;
 }
 
 #codeShare {
