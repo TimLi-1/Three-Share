@@ -30,10 +30,26 @@
 			</svg>
 		</div>
 		<div class="column" style="background-color:#bbb;">
-			<h2>Text Editor</h2> 
-			<button type="button" onclick="myFunction()">Save</button><br>
-			<textarea id="textArea" rows="80" cols="100" placeholder="Type Your Text..."></textarea>
-			<!-- <textarea id="textArea" rows="80" cols="100" placeholder="Type Your Text..."></textarea> -->
+			<div class="rightRow" id="textShare">
+				<h2>Text Editor</h2> 
+				<button type="button" onclick="myFunction()">Save</button><br>
+				<textarea id="textArea" rows="30" cols="100" placeholder="Type Your Text..."></textarea>
+			</div>
+			<div class="rightRow" id="chatRoom">
+				<h2>Chat Room</h2> 
+				<!-- <div id="menu">
+					<p class="chatroom">Welcome to chatroom, <b></b></p>
+					<p class="logout"><a id="exit" href="#">Exit Chat</a></p> 
+					<div style="clear:both"></div> 
+				</div> -->
+				 
+				<div id="chatbox"></div>
+				 
+				<form name="message" action="">
+					<input name="usermsg" type="text" id="usermsg" size="63" />
+					<input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+				</form>
+			</div>
 		</div>
 	</div>
 

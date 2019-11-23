@@ -250,7 +250,7 @@ BoardData.load = function loadBoard(name) {
 				var whiteboardData = data.slice(0, indexSlashN);
 				var textData = data.slice(indexSlashN + 1, 0);
 				// console.log(whiteboardData);
-				// console.log(textData);
+				// console.log(texXData);
 				var a1 = JSON.parse(whiteboardData);
 				boardData.board = JSON.parse(whiteboardData);
 				boardData.text = textData;
