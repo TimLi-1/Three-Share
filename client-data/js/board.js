@@ -23,7 +23,6 @@
  *
  * @licend
  */
-
 var Tools = {};
 
 Tools.board = document.getElementById("board");
@@ -41,8 +40,9 @@ Tools.boardName = (function () {
 //Get the board as soon as the page is loaded
 Tools.socket.emit("getboard", Tools.boardName);
 
-// the holder of the TextArea --Lydia
+// the holder of the TextArea --Lydia -Lydia2
 const textAreaHolder = document.getElementById("textArea");
+// const chatRoomHolder = document.getElementById("chatbox");
 
 Tools.HTML = {
 	template: new Minitpl("#tools > .tool"),
@@ -90,7 +90,19 @@ function myFunction() {
 	var boardTitle = Tools.boardName;
 
 	Tools.socket.emit("textArea", {boardTitle, text});
-	var a= 1;
+}
+
+// chatroom: the send button action -Lydia2
+function myFunction2() {
+	var messageContent = document.getElementById('usermsg').value
+	var userName = document.getElementById('username').value
+	var msg = {userName, messageContent}
+	var boardTitle = Tools.boardName;
+
+	// update my chatbox and emit the socket message to others on board
+	document.getElementById("chatbox").innerHTML += '<p><strong>' + msg.userName + '</strong>: ' + msg.messageContent + '</p>';
+	// document.getElementById("chatbox").innerHTML += "<p>" + msg + "</p>";
+	Tools.socket.emit("chatRoom", {boardTitle, msg})
 }
 
 Tools.list = {}; // An array of all known tools. {"toolName" : {toolObject}}
@@ -234,10 +246,17 @@ function handleMessage(message) {
 // Receive text instructions from the server (saved files) -Lydia() - textArea
 Tools.socket.on("textArea", function(msg) {
 	textAreaHolder.value = msg.text;
-	// document.getElementById("textArea").value = msg.text;
-	// var loadingEl = document.getElementById("loadingMessage");
-	// loadingEl.classList.add("hidden");
-	var a = 1;
+});
+
+// Receive the messages in chat room and shown in chatroom -Lydia2
+Tools.socket.on("chatRoom", function(msg) {
+	// var jsonObj = JSON.parse(msg);
+	// var theDiv = document.getElementById("chatbox");
+	// var content = document.createTextNode('<p><strong>' + msg.userName + '</strong>: ' + msg.messageContent + '</p>');
+	// theDiv.appendChild(content);
+	// document.getElementById("chatbox").innerHTML += jsonObj;
+	document.getElementById("chatbox").innerHTML += '<p><strong>' + msg.content.userName + '</strong>: ' + msg.content.messageContent + '</p>';
+	// $('.chatbox').append('<p><strong>' + msg.userName + '</strong>: ' + msg.messageContent + '</p>');
 });
 
 //Receive draw instructions from the server

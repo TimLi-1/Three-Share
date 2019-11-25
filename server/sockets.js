@@ -62,7 +62,6 @@ function socketConnection(socket) {
 	socket.on("textArea", noFail(function onBroadcastText(message) {
 		var boardName = message.boardTitle;
 		var data = {"type": "textArea", "text":message.text};
-		var tmp1 = "a";
 
 		if (!data) {
 			console.warn("Received invalid message: %s.", JSON.stringify(message));
@@ -74,6 +73,26 @@ function socketConnection(socket) {
 
 		// Save the message in the board
 		saveHistory(boardName, data);
+
+		// log tracking
+		log('textArea Submit', { 'board': boardName, 'textArea': message.text });
+	}));
+
+	// server side of the chat room -Lydia2
+	socket.on("chatRoom", noFail(function onBroadcastChat(message) {
+		var boardName = message.boardTitle;
+		var data = {"type": "chatRoom", "content":message.msg};
+
+		if (!data) {
+			console.warn("Received invalid message: %s.", JSON.stringify(message));
+			return;
+		}
+
+		// Send msg to the chatroom to other users on the same board
+		socket.broadcast.to(boardName).emit('chatRoom', data);
+
+		// log
+		log('Server received msg', { 'board': boardName, 'msg': message.msg });
 	}));
 
 	socket.on("joinboard", noFail(joinBoard));
