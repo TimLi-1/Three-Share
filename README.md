@@ -24,10 +24,9 @@ Languages: JavaScript / HTML / CSS
 **Features:**
 
 1. Online Whitebaord:
-Pencil, Draw, Create Shape, Zoom In, Eraser, Color
+Pencil, Draw, Create Shape, Zoom In, Eraser, Color (This feature is based on https://github.com/lovasoa/whitebophir)
 
 2. Text Editor
 
-3. Todo: Live chat room (hopefully)
-
+3. Live chat room 
 
