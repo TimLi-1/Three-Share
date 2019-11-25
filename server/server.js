@@ -1,3 +1,5 @@
+// The file is from the whitebophir gitHub repository
+// global variables 
 var app = require('http').createServer(handler)
 	, sockets = require('./sockets.js')
 	, log = require("./log.js").log
@@ -87,6 +89,7 @@ handlebars.registerHelper({
 	json: JSON.stringify.bind(JSON)
 });
 
+// the function for handling requets
 function handleRequest(request, response) {
 	var parsedUrl = url.parse(request.url, true);
 	var parts = parsedUrl.pathname.split('/');

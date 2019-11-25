@@ -25,7 +25,7 @@
  */
 
 Minitpl = (function () {
-
+	// constructor of Minitpl
 	function Minitpl(elem, data) {
 		this.elem = (typeof (elem) === "string") ? document.querySelector(elem) : elem;
 		if (!elem) {
@@ -43,6 +43,7 @@ Minitpl = (function () {
 		}
 	}
 
+	// the add function fr adding new object
 	Minitpl.prototype.add = function (data) {
 		var newElem = this.elem.cloneNode(true);
 		if (typeof (data) === "object") {

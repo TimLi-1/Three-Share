@@ -1,3 +1,4 @@
+// The file is from the whitebophir gitHub repository
 var fs = require("fs"),
 	path = require("path");
 

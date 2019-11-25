@@ -8,15 +8,8 @@ html, body, svg {
 	display: flex;
 }
 
-/* .rightRow {
-	height: 500px;
-} */
-
 #chatbox {
     text-align:left;
-    /* margin:0 auto;
-    margin-bottom:25px;
-    padding:10px; */
     background:#fff;
     height:250px;
 	width:820px;

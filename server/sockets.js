@@ -18,6 +18,7 @@ function noFail(fn) {
 	}
 }
 
+// the initiliaztion of the the socket.io
 function startIO(app) {
 	io = iolib(app);
 	io.on('connection', noFail(socketConnection));
@@ -151,6 +152,7 @@ function socketConnection(socket) {
 	});
 }
 
+// the function for saving the canvas history of the current board
 function saveHistory(boardName, message) {
 	var id = message.id;
 	getBoard(boardName).then(board => {
@@ -176,6 +178,7 @@ function saveHistory(boardName, message) {
 	});
 }
 
+// Generate UID 
 function generateUID(prefix, suffix) {
 	var uid = Date.now().toString(36); //Create the uids in chronological order
 	uid += (Math.round(Math.random() * 36)).toString(36); //Add a random character at the end

@@ -42,8 +42,8 @@ Tools.socket.emit("getboard", Tools.boardName);
 
 // the holder of the TextArea --Lydia -Lydia2
 const textAreaHolder = document.getElementById("textArea");
-// const chatRoomHolder = document.getElementById("chatbox");
 
+// initialization of the web page
 Tools.HTML = {
 	template: new Minitpl("#tools > .tool"),
 	addTool: function (toolName, toolIcon, toolShortcut) {
@@ -181,6 +181,7 @@ Tools.change = function (toolName) {
 	Tools.curTool = newtool;
 };
 
+// send socket in the broadcast thread
 Tools.send = function (data, toolName) {
 	toolName = toolName || Tools.curTool.name;
 	var d = data;
@@ -250,13 +251,7 @@ Tools.socket.on("textArea", function(msg) {
 
 // Receive the messages in chat room and shown in chatroom -Lydia2
 Tools.socket.on("chatRoom", function(msg) {
-	// var jsonObj = JSON.parse(msg);
-	// var theDiv = document.getElementById("chatbox");
-	// var content = document.createTextNode('<p><strong>' + msg.userName + '</strong>: ' + msg.messageContent + '</p>');
-	// theDiv.appendChild(content);
-	// document.getElementById("chatbox").innerHTML += jsonObj;
 	document.getElementById("chatbox").innerHTML += '<p><strong>' + msg.content.userName + '</strong>: ' + msg.content.messageContent + '</p>';
-	// $('.chatbox').append('<p><strong>' + msg.userName + '</strong>: ' + msg.messageContent + '</p>');
 });
 
 //Receive draw instructions from the server
@@ -266,16 +261,20 @@ Tools.socket.on("broadcast", function (msg) {
 		loadingEl.classList.add("hidden");
 	});
 });
+
+// listening the socket on reconnecting
 Tools.socket.on("reconnect", function onReconnection() {
 	Tools.socket.emit('joinboard', Tools.boardName);
 });
 
+// tools unread message feature
 Tools.unreadMessagesCount = 0;
 Tools.newUnreadMessage = function () {
 	Tools.unreadMessagesCount++;
 	updateDocumentTitle();
 };
 
+// add a event listener for the window
 window.addEventListener("focus", function () {
 	Tools.unreadMessagesCount = 0;
 	updateDocumentTitle();
@@ -292,6 +291,7 @@ function updateDocumentTitle() {
 	// Scroll and hash handling
 	var scrollTimeout, lastStateUpdate = Date.now();
 
+	// scroll listener
 	window.addEventListener("scroll", function onScroll() {
 		var x = window.scrollX / Tools.getScale(),
 			y = window.scrollY / Tools.getScale();
@@ -308,6 +308,7 @@ function updateDocumentTitle() {
 		}, 100);
 	});
 
+	// scroll settings from hashing
 	function setScrollFromHash() {
 		var coords = window.location.hash.slice(1).split(',');
 		var x = coords[0] | 0;
@@ -336,6 +337,7 @@ function resizeCanvas(m) {
 	}
 }
 
+// the function for updatinig the unread count
 function updateUnreadCount(m) {
 	if (document.hidden && ["child", "update"].indexOf(m.type) === -1) {
 		Tools.newUnreadMessage();
@@ -344,6 +346,7 @@ function updateUnreadCount(m) {
 
 Tools.messageHooks = [resizeCanvas, updateUnreadCount];
 
+// Tools settings, including scaling and the time
 Tools.scale = 1.0;
 var scaleTimeout = null;
 Tools.setScale = function setScale(scale) {
@@ -406,6 +409,7 @@ Tools.toolHooks = [
 			});
 		}
 
+		// tracking the action of the mouse
 		if (listeners.press) {
 			compiled["mousedown"] = compile(listeners.press);
 			compiled["touchstart"] = compileTouch(listeners.press);
